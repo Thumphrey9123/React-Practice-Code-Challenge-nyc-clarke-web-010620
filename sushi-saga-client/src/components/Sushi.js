@@ -7,7 +7,7 @@ const Sushi = (props) => {
            onClick={props.wallet > props.sushi.price ? ()=> props.handleSushiClick(props.sushi.price, props.sushi.id):null}>
         { 
           /* Tell me if this sushi has been eaten! */ 
-          false ?
+           props.eatenSushi.find(id=> { return id === props.sushi.id})?
             null
           :
             <img src={props.sushi.img_url} width="100%" />
