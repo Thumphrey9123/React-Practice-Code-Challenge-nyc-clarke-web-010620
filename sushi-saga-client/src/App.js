@@ -6,6 +6,15 @@ import Table from './containers/Table';
 const API = "http://localhost:3000/sushis"
 
 class App extends Component {
+  state = {
+    sushi: []
+  };
+
+  componentDidMount() {
+    fetch(API)
+    .then(resp => resp.json())
+    .then(sushi=>this.setState({sushi: sushi}))
+  }
 
   render() {
     return (
