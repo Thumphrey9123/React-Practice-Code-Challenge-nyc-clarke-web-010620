@@ -8,13 +8,25 @@ const API = "http://localhost:3000/sushis"
 class App extends Component {
   state = {
     sushi: [],
-    startIndex: 1
+    startIndex: 0,
+    wallet: 100,
+    eatenSushi: []
   };
 
   limitSushiRender() {
     return this.state.sushi.slice(this.state.startIndex, this.state.startIndex+4)
   }
 
+  moreSushi = () => {
+    this.setState({startIndex: this.state.startIndex+4})
+    // this.setState(prevState=>{
+    //   return {[this.state.startIndex]: prevState.startIndex+4}
+    // })
+  }
+
+  handleSushiClick = (amount) => {
+    this.setState({wallet: this.state.wallet-amount})
+  }
 
   componentDidMount() {
     fetch(API)
@@ -25,8 +37,8 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SushiContainer sushi={this.limitSushiRender()}/>
-        <Table />
+        <SushiContainer handleSushiClick={this.handleSushiClick} moreSushi={this.moreSushi} sushi={this.limitSushiRender()}/>
+        <Table wallet={this.state.wallet}/>
       </div>
     );
   }
