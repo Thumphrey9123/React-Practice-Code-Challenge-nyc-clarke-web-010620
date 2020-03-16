@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SushiContainer handleSushiClick={this.handleSushiClick} moreSushi={this.moreSushi} sushi={this.limitSushiRender()}/>
+        <SushiContainer handleSushiClick={this.handleSushiClick} moreSushi={this.moreSushi} sushi={this.limitSushiRender()} wallet={this.state.wallet}/>
         <Table wallet={this.state.wallet}/>
       </div>
     );
