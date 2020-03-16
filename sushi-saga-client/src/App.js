@@ -7,8 +7,14 @@ const API = "http://localhost:3000/sushis"
 
 class App extends Component {
   state = {
-    sushi: []
+    sushi: [],
+    startIndex: 1
   };
+
+  limitSushiRender() {
+    return this.state.sushi.slice(this.state.startIndex, this.state.startIndex+4)
+  }
+
 
   componentDidMount() {
     fetch(API)
@@ -19,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SushiContainer />
+        <SushiContainer sushi={this.limitSushiRender()}/>
         <Table />
       </div>
     );
